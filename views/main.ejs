@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main Page</title>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col justify-start items-start py-8 px-4">
+    <div class="max-w-lg">
+        <h1 class="text-3xl font-semibold mb-4">Welcome <%= username %></h1>
+
+        <h2 class="text-xl font-semibold mb-2">All Users:</h2>
+        <ul class="list-disc pl-6">
+            <% users.forEach(user => { %>
+                <li class="text-base"><%= user.username %></li>
+            <% }); %>
+        </ul>
+    </div>
+</body>
+</html>
