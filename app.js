@@ -1,7 +1,7 @@
 // app.js
 
 const express = require('express');
-const sqlite3 = require('sqlite3');
+const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
 const app = express();
