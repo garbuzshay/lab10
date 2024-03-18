@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 // Set view engine to EJS
 app.set('view engine', 'ejs');
-
+app.set('views', __dirname + '/views');
 // Connect to SQLite database
 const db = new sqlite3.Database(path.join(__dirname, 'data.db'));
 
@@ -94,7 +94,7 @@ app.listen(PORT, () => {
 //     if (!row) {
 //       console.log('User not found');
 //       // Handle user not found case
-//     } else {
+//     } else { 
 //       const userId = row.id;
 //       // Delete the user with the obtained ID
 //       db.run('DELETE FROM users WHERE id = ?', userId, (err) => {
