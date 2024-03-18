@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3000;
 
 // Set view engine to EJS
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
+app.set("views", path.join(__dirname, "views"));
 
 // Connect to SQLite database
 const db = new sqlite3.Database(path.join(__dirname, 'data.db'));
