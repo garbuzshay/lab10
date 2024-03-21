@@ -1,8 +1,6 @@
-// app.js
-
 const express = require('express');
-const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
+const db = require('./db');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,18 +8,6 @@ const PORT = process.env.PORT || 3000;
 // Set view engine to EJS
 app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "views"));
-
-// Connect to SQLite database
-const db = new sqlite3.Database(path.join(__dirname, 'data.db'));
-
-// Create user table if not exists
-db.run(`
-  CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL
-  )
-`);
 
 // Middleware to parse form data
 app.use(express.urlencoded({ extended: true }));
@@ -68,7 +54,6 @@ app.post('/register', (req, res) => {
   });
 });
 
-
 // Route to delete user data
 app.post('/delete/:id', (req, res) => {
   const userId = req.params.id;
@@ -80,6 +65,14 @@ app.post('/delete/:id', (req, res) => {
     res.redirect('/');
   });
 });
+
+db.run(`
+  CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL
+  )
+`);
 
 // Start server
 app.listen(PORT, () => {
